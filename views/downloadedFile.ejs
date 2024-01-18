@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API GDrive</title>
+  </head>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #3498db; /* Warna latar belakang biru */
+      color: #fff; /* Warna teks putih */
+    }
+
+    .card {
+      background-color: #fff; /* Warna latar belakang card */
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+      border-radius: 10px;
+    }
+
+    button {
+      background-color: #3498db; /* Warna latar belakang biru (sama dengan latar belakang halaman) */
+      color: #fff; /* Warna teks putih */
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .text {
+      color: black;
+    }
+    .text-area {
+      display: block;
+      margin-bottom: 5px;
+      width: 500px;
+      height: 50vh;
+    }
+
+    .file-input {
+      color: black;
+    }
+  </style>
+  <body>
+    <div class="card text" id="resultCard">
+      File <%= fileName %> akan Didownload setelah
+      <span id="countdown">3</span> detik
+      <p>
+        Belum Terdownload ?
+        <a href="/downloading/<%= fileId %>" id="downloadLink" class="button"
+          >Klik Disini</a
+        >
+        Untuk Mendownload Ulang
+      </p>
+    </div>
+  </body>
+  <!-- Tambahkan bagian ini di bawah tag </html> -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Fungsi untuk mengklik anchor setelah 3 detik
+      function autoClickAnchor() {
+        var downloadLink = document.getElementById("downloadLink");
+        if (downloadLink) {
+          downloadLink.click();
+          // Nonaktifkan tautan setelah diklik
+          downloadLink.style.pointerEvents = "none";
+          downloadLink.style.color = "#999"; // Atur warna menjadi abu-abu atau warna non-aktif
+        }
+      }
+
+      // Fungsi untuk mengupdate countdown
+      function updateCountdown(seconds) {
+        var countdownElement = document.getElementById("countdown");
+        if (countdownElement) {
+          countdownElement.textContent = seconds;
+        }
+      }
+
+      // Jalankan fungsi autoClickAnchor setelah 3 detik
+      setTimeout(autoClickAnchor, 3000);
+
+      // Jalankan countdown
+      var countdown = 3;
+      var countdownInterval = setInterval(function () {
+        countdown--;
+        updateCountdown(countdown);
+        if (countdown <= 0) {
+          clearInterval(countdownInterval);
+        }
+      }, 1000);
+    });
+  </script>
+</html>
