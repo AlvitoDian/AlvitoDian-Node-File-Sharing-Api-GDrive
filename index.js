@@ -99,8 +99,8 @@ app.get("/fileId/:fileId", async (req, res) => {
       const authClient = await authorize();
       // const content = await fileContent(authClient, uploadedFileId);
 
-      /* const qrCodeText = `https://node-file-sharing-api-g-drive.vercel.app/download/${requestedFileId}`; */
-      const qrCodeText = `http://localhost:5000//download/${requestedFileId}`;
+      const qrCodeText = `https://node-file-sharing-api-g-drive.vercel.app/download/${requestedFileId}`;
+      /* const qrCodeText = `http://localhost:5000//download/${requestedFileId}`; */
       const qrCodeDataURL = await qrcode.toDataURL(qrCodeText);
 
       res.render("download", { fileId: uploadedFileId, qrCodeDataURL });
