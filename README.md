@@ -36,4 +36,6 @@ a simple file sharing application using node js and google drive API.
    ```bash
    node index.js
 
-
+## Disclaimer
+This project was insipred by [@YuukioFuyu](https://github.com/YuukioFuyu)
+<p>This project was formed from my initiative to learn.</p>
